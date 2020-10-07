@@ -1,6 +1,16 @@
 import React from 'react';
 import { ToolbarSection, ToolbarItem } from '../editor';
 
+export const PaddingSettingsDefaults = {
+  padding: ['0', '0', '0', '0']
+}
+
+export const PaddingSettingsStyle = (props) => {
+  return {
+    padding: `${props.padding[0]}px ${props.padding[1]}px ${props.padding[2]}px ${props.padding[3]}px`,
+  }
+} 
+
 export const PaddingSettings = () => {
   return (
     <React.Fragment>

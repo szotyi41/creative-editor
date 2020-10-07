@@ -66,7 +66,7 @@ function App() {
                 is={Container}
                 width="800px"
                 height="auto"
-                background={{ r: 255, g: 255, b: 255, a: 1 }}
+                backgroundColor={{ r: 255, g: 255, b: 255, a: 1 }}
                 padding={['40', '40', '40', '40']}
               >
                 <Element
@@ -109,7 +109,7 @@ function App() {
                 <Element
                   canvas
                   is={Container}
-                  background={{ r: 39, g: 41, b: 41, a: 1 }}
+                  backgroundColor={{ r: 39, g: 41, b: 41, a: 1 }}
                   flexDirection="column"
                   width="100%"
                   height="auto"
@@ -118,7 +118,7 @@ function App() {
                 >
                   <Element
                     canvas
-                    background={{
+                    backgroundColor={{
                       r: 76,
                       g: 78,
                       b: 78,
@@ -133,7 +133,7 @@ function App() {
                   >
                     <Element
                       canvas
-                      background={{
+                      backgroundColor={{
                         r: 0,
                         g: 0,
                         b: 0,
@@ -151,7 +151,7 @@ function App() {
                         is={Container}
                         justifyContent="center"
                         alignItems="center"
-                        background={{
+                        backgroundColor={{
                           r: 76,
                           g: 78,
                           b: 78,
@@ -167,7 +167,7 @@ function App() {
                           is={Container}
                           justifyContent="center"
                           alignItems="center"
-                          background={{
+                          backgroundColor={{
                             r: 76,
                             g: 78,
                             b: 78,
@@ -183,7 +183,7 @@ function App() {
                             is={Container}
                             justifyContent="center"
                             alignItems="center"
-                            background={{
+                            backgroundColor={{
                               r: 76,
                               g: 78,
                               b: 78,
@@ -199,7 +199,7 @@ function App() {
                     </Element>
                     <Element
                       canvas
-                      background={{
+                      backgroundColor={{
                         r: 0,
                         g: 0,
                         b: 0,
@@ -240,7 +240,7 @@ function App() {
                 <Element
                   canvas
                   is={Container}
-                  background={{
+                  backgroundColor={{
                     r: 234,
                     g: 245,
                     b: 245,
@@ -254,7 +254,7 @@ function App() {
                 >
                   <Element
                     canvas
-                    background={{
+                    backgroundColor={{
                       r: 76,
                       g: 78,
                       b: 78,
@@ -284,7 +284,7 @@ function App() {
                   </Element>
                   <Element
                     canvas
-                    background={{
+                    backgroundColor={{
                       r: 76,
                       g: 78,
                       b: 78,
@@ -298,7 +298,7 @@ function App() {
                   >
                     <Element
                       canvas
-                      background={{
+                      backgroundColor={{
                         r: 0,
                         g: 0,
                         b: 0,
@@ -310,7 +310,7 @@ function App() {
                       width="45%"
                     >
                       <Custom1
-                        background={{
+                        backgroundColor={{
                           r: 119,
                           g: 219,
                           b: 165,
@@ -325,7 +325,7 @@ function App() {
                     </Element>
                     <Element
                       canvas
-                      background={{
+                      backgroundColor={{
                         r: 0,
                         g: 0,
                         b: 0,
@@ -337,7 +337,7 @@ function App() {
                       width="55%"
                     >
                       <Custom2
-                        background={{
+                        backgroundColor={{
                           r: 108,
                           g: 126,
                           b: 131,
@@ -352,7 +352,7 @@ function App() {
                         alignItems="center"
                       />
                       <Custom3
-                        background={{
+                        backgroundColor={{
                           r: 134,
                           g: 187,
                           b: 201,

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, CSSProperties } from 'react';
 import { useState } from 'react';
 import { ChromePicker } from 'react-color';
 import { TextField, makeStyles, InputAdornment } from '@material-ui/core';
@@ -28,6 +28,22 @@ const useStyles = makeStyles({
   //   borderRadius: "100px"
   // }
 });
+
+const numberIncreaseButtonStyle: CSSProperties = {
+  position: 'absolute',
+  bottom: '8px',
+  right: '4px',
+  width: '16px',
+  height: '16px',
+  cursor: 'pointer',
+  lineHeight: '4px',
+  color: '#999',
+  backgroundColor: '#fff',
+  borderRadius: '50%',
+  zIndex: 100,
+  outline: 'none',
+  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+};
 
 const useLabelStyles = makeStyles({
   root: {
@@ -59,17 +75,27 @@ export const ToolbarTextInput = ({
   type,
   ...props
 }: ToolbarTextInput) => {
+
   const [internalValue, setInternalValue] = useState(value);
   const [active, setActive] = useState(false);
   const classes = useStyles({});
   const labelClasses = useLabelStyles({});
+
   useEffect(() => {
     // if (value !== internalValue) {
     let val = value;
-    if (type == 'color' || type == 'bg') val = `rgba(${Object.values(value)})`;
+    if ((type == 'color' || type == 'bg') && (typeof value === 'object')) {
+      val = `rgba(${Object.values(value)})`;
+    }
     setInternalValue(val);
     // }
   }, [value]);
+
+  const increaseValue = (number) => {
+    let val = Number(internalValue.replace(/[^\d.-]/g, ''));
+    let suffix = internalValue.replace(/[0-9.-]/g, '');
+    setInternalValue((val+number)+suffix);
+  }
 
   return (
     <div
@@ -103,6 +129,14 @@ export const ToolbarTextInput = ({
           />
         </div>
       ) : null}
+
+      {(type === 'number') ? (
+        <div>
+          <button style={{ ...numberIncreaseButtonStyle, right: '8px' }} onClick={() => increaseValue(+1)}>+</button>  
+          <button style={{ ...numberIncreaseButtonStyle, right: '28px' }} onClick={() => increaseValue(-1)}>-</button>  
+        </div>
+      ) : null}
+
       <TextField
         label={label}
         style={{ margin: 0, width: '100%' }}
@@ -145,8 +179,8 @@ export const ToolbarTextInput = ({
           },
           shrink: true,
         }}
-        {...props}
-      />
+        {...props}>
+        </TextField>
     </div>
   );
 };

@@ -108,7 +108,7 @@ export const RenderNode = ({ render }) => {
                 zIndex: 9999,
               }}
             >
-              <h2 className="flex-1 mr-4" >{name}</h2>
+            <h2 className="flex-1 mr-4">{name} ({dom.offsetWidth}x{dom.offsetHeight})</h2>
               {moveable ? (
                 <Btn className="mr-2 cursor-move" ref={drag}>
                   <Move />

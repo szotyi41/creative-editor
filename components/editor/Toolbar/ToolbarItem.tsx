@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Slider, RadioGroup } from '@material-ui/core';
 import { useNode } from '@craftjs/core';
 import { ToolbarTextInput } from './ToolbarTextInput';
 import { ToolbarDropdown } from './ToolbarDropdown';
 import { withStyles } from '@material-ui/styles';
+import { ColorPicker } from 'react-color-gradient-picker';
+import './react-color-gradient-picker.css';
+
+
 const iOSBoxShadow =
   '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
 
@@ -67,6 +71,8 @@ export type ToolbarItem = {
   index?: number;
   children?: React.ReactNode;
   type: string;
+  min?: number;
+  max?: number;
   onChange?: (value: any) => any;
 };
 export const ToolbarItem = ({
@@ -75,6 +81,8 @@ export const ToolbarItem = ({
   type,
   onChange,
   index,
+  min,
+  max,
   ...props
 }: ToolbarItem) => {
   const {
@@ -109,7 +117,9 @@ export const ToolbarItem = ({
               <h4 className="text-sm text-light-gray-2">{props.label}</h4>
             ) : null}
             <SliderStyled
-              value={parseInt(value) || 0}
+                value={parseInt(value) || 0}
+                min={min || 0}
+                max={max || 100}
               onChange={
                 ((_, value: number) => {
                   setProp((props: any) => {
@@ -153,6 +163,13 @@ export const ToolbarItem = ({
             }
             {...props}
           />
+        ) : type == 'gradient' ? (
+            <>
+              <ColorPicker onChange={(value) => setProp((props: any) => (props[propKey] = onChange ? onChange(value) : value))}
+                  gradient={value}
+                  isGradient
+              />
+            </>
         ) : null}
       </div>
     </Grid>

@@ -3,6 +3,26 @@ import { ToolbarSection, ToolbarItem } from '../editor';
 import { ToolbarRadio } from '../editor/Toolbar/ToolbarRadio';
 import { ToolbarRow } from '../editor/Toolbar/ToolbarRow';
 
+export const PositionsSettingsDefaults = {
+  position: 'relative',
+  overflow: 'visible',
+  left: '0px',
+  top: '0px',
+  translateX: '0px',
+  translateY: '0px'
+}
+
+export const PositionsSettingsStyle = ({position, left, top,translateX, translateY, overflow}) => {
+  return {
+    position: position,
+    left: left,
+    top: top,
+    transition: `transform(${translateX}, ${translateY})`,
+    overflow: overflow
+  }
+}
+
+
 export const PositionsSettings = () => {
   return (
     <React.Fragment>
@@ -23,15 +43,12 @@ export const PositionsSettings = () => {
           <ToolbarRadio value="visible" label="Visible" />
         </ToolbarItem>
 
-        <ToolbarRow>
-          <ToolbarItem propKey="left" type="text" label="Left" />
-          <ToolbarItem propKey="top" type="text" label="Top" />
-        </ToolbarRow>
+          <ToolbarItem propKey="left" type="number" label="Left" />
+          <ToolbarItem propKey="top" type="number" label="Top" />
 
-        <ToolbarRow>
-          <ToolbarItem propKey="translateX" type="text" label="Translate X" />
-          <ToolbarItem propKey="translateY" type="text" label="Translate Y" />
-        </ToolbarRow>
+          <ToolbarItem propKey="translateX" type="number" label="Translate X" />
+        <ToolbarItem propKey="translateY" type="number" label="Translate Y" />
+        
       </ToolbarSection>
     </React.Fragment>
   );

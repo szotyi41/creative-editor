@@ -1,6 +1,16 @@
 import React from 'react';
 import { ToolbarSection, ToolbarItem } from '../editor';
 
+export const MarginSettingsDefaults = {
+  margin: ['0', '0', '0', '0']
+}
+
+export const MarginSettingsStyle = (props) => {
+  return {
+    margin: `${props.margin[0]}px ${props.margin[1]}px ${props.margin[2]}px ${props.margin[3]}px`,
+  }
+} 
+
 export const MarginSetings = () => {
   return (
     <React.Fragment>

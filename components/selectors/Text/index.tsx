@@ -3,13 +3,19 @@ import { useNode, useEditor } from '@craftjs/core';
 import { Resizer } from '../Resizer';
 import { TextSettings } from './TextSettings';
 import ContentEditable from 'react-contenteditable';
+import { TypographySettingsStyle } from '../TypographySettings';
+import { TypographySettingsDefaults } from '../TypographySettings';
+import { MarginSettingsDefaults, MarginSettingsStyle } from '../MarginSettings';
+import { PaddingSettingsDefaults, PaddingSettingsStyle } from '../PaddingSettings';
+import { PositionsSettingsDefaults, PositionsSettingsStyle } from '../PositionsSettings';
+import { DimensionsSettingsStyle, DimensionsSettingsDefaults } from '../DimensionsSettings';
 
 export type Text = {
   fontSize: string;
   textAlign: string;
   fontWeight: string;
   color: Record<'r' | 'g' | 'b' | 'a', string>;
-  shadow: number;
+  textShadow: number;
   text: string;
   margin: [string, string, string, string];
   padding: [string, string, string, string];
@@ -23,24 +29,15 @@ export type Text = {
   height: string;
 };
 
-export const Text = ({
-  position,
-  overflow,
-  fontSize,
-  textAlign,
-  fontWeight,
-  color,
-  shadow,
-  text,
-  margin,
-  padding,
-  left,
-  top,
-  width,
-  height,
-  translateX,
-  translateY,
-}: Partial<Text>) => {
+export const defaultProps = {
+  ...TypographySettingsDefaults,
+  ...MarginSettingsDefaults,
+  ...PaddingSettingsDefaults,
+  ...PositionsSettingsDefaults,
+  ...DimensionsSettingsDefaults,
+}
+
+export const Text = (props: any) => {
   const {
     connectors: { connect },
     setProp,
@@ -48,29 +45,24 @@ export const Text = ({
   const { enabled } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
+  props = {
+    ...defaultProps,
+    ...props
+  }
   return (
     <Resizer
       propKey={{ width: 'width', height: 'height' }}
       style={{
-        position: position,
-        overflow: overflow,
-        width: width,
-        height: height,
-        margin: `${margin[0]}px ${margin[1]}px ${margin[2]}px ${margin[3]}px`,
-        color: `rgba(${Object.values(color)})`,
-        fontSize: `${fontSize}px`,
-        textShadow: `0px 0px 2px rgba(0,0,0,${(shadow || 0) / 100})`,
-        fontWeight: fontWeight,
-        textAlign: textAlign,
-        left: left,
-        top: top,
-        transition: `transform(${translateX}, ${translateY})`,
-        padding: `${padding[0]}px ${padding[1]}px ${padding[2]}px ${padding[3]}px`,
+        ...TypographySettingsStyle(props),
+        ...MarginSettingsStyle(props),
+        ...PaddingSettingsStyle(props),
+        ...PositionsSettingsStyle(props),
+        ...DimensionsSettingsStyle(props),
       }}
     >
       <ContentEditable
         innerRef={connect}
-        html={text} // innerHTML of the editable div
+        html={props.text} // innerHTML of the editable div
         disabled={!enabled}
         onChange={(e) => {
           setProp((prop) => (prop.text = e.target.value), 500);
@@ -83,24 +75,7 @@ export const Text = ({
 
 Text.craft = {
   displayName: 'Text',
-  props: {
-    fontSize: '15',
-    textAlign: 'left',
-    fontWeight: '500',
-    color: { r: 92, g: 90, b: 90, a: 1 },
-    margin: [0, 0, 0, 0],
-    padding: [0, 0, 0, 0],
-    translateX: '0px',
-    translateY: '0px',
-    position: 'relative',
-    overflow: 'visible',
-    width: '100%',
-    height: 'auto',
-    left: '0px',
-    top: '0px',
-    shadow: 0,
-    text: 'Text',
-  },
+  props: defaultProps,
   related: {
     toolbar: TextSettings,
   },

@@ -1,19 +1,23 @@
 import React from 'react';
 import { AlignmentSettings } from '../AlignmentSettings';
-import { DecorationSettings } from '../DecorationSettings';
 import { PaddingSettings } from '../PaddingSettings';
 import { MarginSetings } from '../MarginSettings';
 import { BackgroundSettings } from '../BackgroundSettings';
 import { DimensionsSettings } from '../DimensionsSettings';
+import { BorderSettings } from '../BorderSettings';
+import { PositionsSettings } from '../PositionsSettings';
+import { ShadowSettings } from '../ShadowSettings';
 
 export const ContainerSettings = () => {
   return (
     <React.Fragment>
+      <PositionsSettings></PositionsSettings>
       <DimensionsSettings></DimensionsSettings>
       <BackgroundSettings></BackgroundSettings>
       <PaddingSettings></PaddingSettings>
       <MarginSetings></MarginSetings>
-      <DecorationSettings></DecorationSettings>
+      <BorderSettings></BorderSettings>
+      <ShadowSettings></ShadowSettings>
       <AlignmentSettings></AlignmentSettings>
     </React.Fragment>
   );

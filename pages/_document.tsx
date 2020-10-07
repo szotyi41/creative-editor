@@ -25,6 +25,11 @@ export default class MyDocument extends Document {
         <Head>
           {/* Step 5: Output the styles in the head  */}
           {(this.props as any).styleTags}
+
+          <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
         </Head>
         <body>
           <Main />
